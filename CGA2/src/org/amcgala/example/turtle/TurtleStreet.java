@@ -68,7 +68,7 @@ public class TurtleStreet extends TurtleMode {
         turnRight(180); 
         for(int i=0; i<etagen;i++){
         	int fenster = 1+(int)(Math.random()*6);
-        	System.out.println("Max. Fenster: "+ fenster);
+        	//System.out.println("Max. Fenster: "+ fenster);
         	up();
         	move(height/etagen);
             turnRight(90);
@@ -83,7 +83,7 @@ public class TurtleStreet extends TurtleMode {
                 move(6);
             	for(int j=0; j<fenster;j++){
             		if((int)(Math.random()*5)<3){
-            			System.out.println("fenster");
+            			//System.out.println("fenster");
             			down();
             			move(height/etagen - 12);
             			turnLeft(90);
@@ -98,7 +98,7 @@ public class TurtleStreet extends TurtleMode {
             			turnRight(90);
             		}
             		else {
-            			System.out.println("kein fenster");
+            			//System.out.println("kein fenster");
 
             			up();
             			turnLeft(90);
