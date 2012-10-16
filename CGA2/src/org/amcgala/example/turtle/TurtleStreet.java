@@ -55,13 +55,35 @@ public class TurtleStreet extends TurtleMode {
 
     private void newHouse() {
     	down();
-    	double height = 80+Math.random()*220;
+    	double height = (int) (80+Math.random()*220);
     	int etagen = 2+(int)(Math.random()*5);
     	System.out.println("Etagen: "+ etagen);
     	move(136);
+    	turnLeft(180);
+    	int doorL = (int)(136/4);
+    	move((int)(136/2 + doorL/2 + 0.5));
+    	turnRight(90);
+    	move((int)(height/etagen/2));
+    	turnRight(90);
+    	move(doorL);
+    	turnRight(90);
+    	move((int)(height/etagen/2));
+    	turnLeft(90);
+    	move((int)(136/2 - doorL/2 +0.5));
         turnLeft(90);
         move(height);
-        turnLeft(90);
+        if(1+Math.random()*5<3){
+	        turnLeft(30);
+	        move(136);
+	        turnLeft(120);
+	        move(136);
+	        turnLeft(120);
+	        move(136);
+	        turnLeft(180);
+        }
+        else{
+        	turnLeft(90);
+        }
         move(136);
         turnLeft(90);
         move(height);
@@ -82,7 +104,7 @@ public class TurtleStreet extends TurtleMode {
                 turnRight(90);
                 move(6);
             	for(int j=0; j<fenster;j++){
-            		if((int)(Math.random()*5)<3){
+            		if((int)(Math.random()*5)<4){
             			//System.out.println("fenster");
             			down();
             			move(height/etagen - 12);
@@ -106,8 +128,13 @@ public class TurtleStreet extends TurtleMode {
             			turnRight(90);
             		}
             	}
+            	turnLeft(90);
+            	if((136-((fenster+1)*6))-(((int)((136-((fenster+1)*6))/fenster))*fenster)>0)
+            		move((136-((fenster+1)*6))-(((int)((136-((fenster+1)*6))/fenster))*fenster));
+            	turnRight(90);
             	turnRight(180);
             	move(6);
+            	
             	turnRight(180);
             	//move((height/etagen)-6);
             }
