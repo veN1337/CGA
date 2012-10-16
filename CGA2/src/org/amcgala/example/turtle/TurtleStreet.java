@@ -129,8 +129,9 @@ public class TurtleStreet extends TurtleMode {
             		}
             	}
             	turnLeft(90);
-            	if((136-((fenster+1)*6))-(((int)((136-((fenster+1)*6))/fenster))*fenster)>0)
-            		move((136-((fenster+1)*6))-(((int)((136-((fenster+1)*6))/fenster))*fenster));
+            	int anpassung = (136-((fenster+1)*6))-(((int)((136-((fenster+1)*6))/fenster))*fenster);
+            	if(anpassung>0)
+            		move(anpassung);
             	turnRight(90);
             	turnRight(180);
             	move(6);
