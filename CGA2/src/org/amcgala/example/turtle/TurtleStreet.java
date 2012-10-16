@@ -57,6 +57,7 @@ public class TurtleStreet extends TurtleMode {
     	down();
     	double height = 80+Math.random()*220;
     	int etagen = 2+(int)(Math.random()*5);
+    	System.out.println("Etagen: "+ etagen);
     	move(136);
         turnLeft(90);
         move(height);
@@ -64,9 +65,10 @@ public class TurtleStreet extends TurtleMode {
         move(136);
         turnLeft(90);
         move(height);
-        turnRight(180);  
+        turnRight(180); 
         for(int i=0; i<etagen;i++){
         	int fenster = 1+(int)(Math.random()*6);
+        	System.out.println("Max. Fenster: "+ fenster);
         	up();
         	move(height/etagen);
             turnRight(90);
@@ -81,6 +83,7 @@ public class TurtleStreet extends TurtleMode {
                 move(6);
             	for(int j=0; j<fenster;j++){
             		if((int)(Math.random()*5)<3){
+            			System.out.println("fenster");
             			down();
             			move(height/etagen - 12);
             			turnLeft(90);
@@ -90,31 +93,35 @@ public class TurtleStreet extends TurtleMode {
             			turnLeft(90);
             			move((136-((fenster+1)*6))/fenster);
             			up();
-            			turnLeft(180);
+            			turnLeft(180); 
             			move((136-((fenster+1)*6))/fenster+6);
             			turnRight(90);
             		}
-            		else{
+            		else {
+            			System.out.println("kein fenster");
+
             			up();
             			turnLeft(90);
             			move((136-((fenster+1)*6))/fenster+6);
             			turnRight(90);
             		}
             	}
-            	move(height/etagen-6);
+            	turnRight(180);
+            	move(6);
+            	turnRight(180);
+            	//move((height/etagen)-6);
             }
             
         }
-        turnRight(180);
-        up();
+        up(); //down();
+        turnLeft(90);
         move(height);
         turnLeft(90);
-        move(136);
         
     }
     
     private void drawHouses() {
-    	for(int i=0;i<1;i++){
+    	for(int i=0;i<5;i++){
     		move(20);
     		newHouse();
     	}
