@@ -16,8 +16,7 @@ public class TurtleStreet extends TurtleMode {
          gotoStart();
          street();
          drawHouses();
-         //asdjhgasdjgadhfahsd
-
+         
     }
 
     private void street() {
@@ -58,27 +57,26 @@ public class TurtleStreet extends TurtleMode {
 
     private void newHouse() {
     	down();
-    	double length = 80+Math.random()*220;
+    	double height = 80+Math.random()*220;
     	int etagen = 2+(int)(Math.random()*5);
     	move(136);
         turnLeft(90);
-        move(length);
+        move(height);
         turnLeft(90);
         move(136);
         turnLeft(90);
-        move(length);
+        move(height);
         turnRight(180);  
-        for(int i=0; i< etagen;i++){
+        for(int i=0; i<etagen;i++){
         	int fenster = 1+(int)(Math.random()*6);
         	up();
-        	move(length/etagen);
+        	move(height/etagen);
             turnRight(90);
             down();
             move(136);
             turnRight(180);
             up();
-            
-            //int bigF = 0;
+
             if(i<etagen-1){
             	move(6);
                 turnRight(90);
@@ -86,11 +84,11 @@ public class TurtleStreet extends TurtleMode {
             	for(int j=0; j<fenster;j++){
             		if((int)(Math.random()*5)<3){
             			down();
-            			move(length/etagen - 12);
+            			move(height/etagen - 12);
             			turnLeft(90);
             			move((136-((fenster+1)*6))/fenster);
             			turnLeft(90);
-            			move(length/etagen - 12);
+            			move(height/etagen - 12);
             			turnLeft(90);
             			move((136-((fenster+1)*6))/fenster);
             			up();
@@ -105,40 +103,13 @@ public class TurtleStreet extends TurtleMode {
             			turnRight(90);
             		}
             	}
-            	move(length/etagen-6);
+            	move(height/etagen-6);
             }
-            /*if(i<etagen-1){
-            	bigF = (int) Math.round(Math.random());
-	            if (bigF == 1) {
-	            	move(6);
-	                turnRight(90);
-	                move(6);
-	            	down();
-	            	move(length/etagen - 12);
-	            	turnLeft(90);
-	            	move(124);
-	            	turnLeft(90);
-	            	move(length/etagen - 12);
-	            	turnLeft(90);
-	            	move(124);
-	            	up();
-	            	turnLeft(180);
-	            	move(130);
-	            	turnLeft(90);
-	            	move(6);
-	            	turnLeft(180);
-	            }
-	            
-            }*/
-            /*if(bigF ==0){
-            	move(136);
-                turnRight(90);
-            }*/
             
         }
         turnRight(180);
         up();
-        move(length);
+        move(height);
         turnLeft(90);
         move(136);
         
