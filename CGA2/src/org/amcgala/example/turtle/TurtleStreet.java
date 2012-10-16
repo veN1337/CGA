@@ -16,15 +16,7 @@ public class TurtleStreet extends TurtleMode {
          gotoStart();
          street();
          drawHouses();
-<<<<<<< HEAD
-         
-=======
-         //asdjhgasdjgadhfahsd
-         //Sascha ist doof!
-
->>>>>>> refs/remotes/origin/master
     }
-
     private void street() {
     	move(800);
     	up();
