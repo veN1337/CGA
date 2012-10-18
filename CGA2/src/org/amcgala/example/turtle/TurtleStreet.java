@@ -16,11 +16,7 @@ public class TurtleStreet extends TurtleMode {
          gotoStart();
          street();
          drawHouses();
-         //asdjhgasdjgadhfahsd
-         //Sascha ist doof!
-
     }
-
     private void street() {
     	move(800);
     	up();
@@ -59,94 +55,96 @@ public class TurtleStreet extends TurtleMode {
 
     private void newHouse() {
     	down();
-    	double length = 80+Math.random()*220;
+    	double height = (int) (80+Math.random()*220);
+    	int width = (int) (80+Math.random()*260);
     	int etagen = 2+(int)(Math.random()*5);
-    	move(136);
+		move(width);
+    	turnLeft(180);
+    	int doorL = (int)(width/4);
+    	move((int)(width/2 + doorL/2 + 0.5));
+    	turnRight(90);
+    	move((int)(height/etagen/2));
+    	turnRight(90);
+    	move(doorL);
+    	turnRight(90);
+    	move((int)(height/etagen/2));
+    	turnLeft(90);
+    	move((int)(width/2 - doorL/2 +0.5));
         turnLeft(90);
-        move(length);
+        move(height);
+        if(1+Math.random()*5<3){
+	        turnLeft(30);
+	        move(width);
+	        turnLeft(120);
+	        move(width);
+	        turnLeft(120);
+	        move(width);
+	        turnLeft(180);
+        }
+        else{
+        	turnLeft(90);
+        }
+        move(width);
         turnLeft(90);
-        move(136);
-        turnLeft(90);
-        move(length);
-        turnRight(180);  
-        for(int i=0; i< etagen;i++){
+        move(height);
+        turnRight(180); 
+        for(int i=0; i<etagen;i++){
         	int fenster = 1+(int)(Math.random()*6);
         	up();
-        	move(length/etagen);
+        	move(height/etagen);
             turnRight(90);
             down();
-            move(136);
+            move(width);
             turnRight(180);
             up();
-            
-            //int bigF = 0;
+
             if(i<etagen-1){
             	move(6);
                 turnRight(90);
                 move(6);
             	for(int j=0; j<fenster;j++){
-            		if((int)(Math.random()*5)<3){
+            		if((int)(Math.random()*5)<4){
             			down();
-            			move(length/etagen - 12);
+            			move(height/etagen - 12);
             			turnLeft(90);
-            			move((136-((fenster+1)*6))/fenster);
+            			move((width-((fenster+1)*6))/fenster);
             			turnLeft(90);
-            			move(length/etagen - 12);
+            			move(height/etagen - 12);
             			turnLeft(90);
-            			move((136-((fenster+1)*6))/fenster);
+            			move((width-((fenster+1)*6))/fenster);
             			up();
-            			turnLeft(180);
-            			move((136-((fenster+1)*6))/fenster+6);
+            			turnLeft(180); 
+            			move((width-((fenster+1)*6))/fenster+6);
             			turnRight(90);
             		}
-            		else{
+            		else {
             			up();
             			turnLeft(90);
-            			move((136-((fenster+1)*6))/fenster+6);
+            			move((width-((fenster+1)*6))/fenster+6);
             			turnRight(90);
             		}
             	}
-            	move(length/etagen-6);
+            	turnLeft(90);
+            	int anpassung = (width-((fenster+1)*6))-(((int)((width-((fenster+1)*6))/fenster))*fenster);
+            	if(anpassung>0)
+            		move(anpassung);
+            	turnRight(90);
+            	turnRight(180);
+            	move(6);
+            	turnRight(180);
             }
-            /*if(i<etagen-1){
-            	bigF = (int) Math.round(Math.random());
-	            if (bigF == 1) {
-	            	move(6);
-	                turnRight(90);
-	                move(6);
-	            	down();
-	            	move(length/etagen - 12);
-	            	turnLeft(90);
-	            	move(124);
-	            	turnLeft(90);
-	            	move(length/etagen - 12);
-	            	turnLeft(90);
-	            	move(124);
-	            	up();
-	            	turnLeft(180);
-	            	move(130);
-	            	turnLeft(90);
-	            	move(6);
-	            	turnLeft(180);
-	            }
-	            
-            }*/
-            /*if(bigF ==0){
-            	move(136);
-                turnRight(90);
-            }*/
             
         }
-        turnRight(180);
         up();
-        move(length);
         turnLeft(90);
-        move(136);
+        move(height);
+        turnLeft(90);
         
     }
     
     private void drawHouses() {
-    	for(int i=0;i<1;i++){
+    	int anzahl = (int) (2+Math.random()*6);
+    	for(int i=0;i<anzahl;i++){
     		move(20);
     		newHouse();
     	}
