@@ -72,17 +72,9 @@ public class TurtleStreet extends TurtleMode {
     	move((int)(width/2 - doorL/2 +0.5));
         turnLeft(90);
         move(height);
-        int albe = 30;
-        int ga = 180 - albe*2;
-        int ab = (int) (width * Math.sin(albe*Math.PI/180) / Math.sin(ga*Math.PI/180) + 0.5);
+        
         if(1+Math.random()*5<3){
-	        turnLeft(90 - albe);
-	        move(ab);
-	        turnLeft(180 - ga);
-	        move(ab);
-	        turnLeft(180 - albe);
-	        move(width);
-	        turnLeft(180);
+        	drawRoof(width);
         }
         else{
         	turnLeft(90);
@@ -91,7 +83,15 @@ public class TurtleStreet extends TurtleMode {
         turnLeft(90);
         move(height);
         turnRight(180); 
-        for(int i=0; i<etagen;i++){
+        drawStages(height, width, etagen);
+        up();
+        turnLeft(90);
+        move(height);
+        turnLeft(90);
+        
+    }
+	private void drawStages(double height, int width, int etagen) {
+		for(int i=0; i<etagen;i++){
         	int fenster = 1+(int)(Math.random()*6);
         	up();
         	move(height/etagen);
@@ -107,18 +107,7 @@ public class TurtleStreet extends TurtleMode {
                 move(6);
             	for(int j=0; j<fenster;j++){
             		if((int)(Math.random()*5)<3){
-            			down();
-            			move(height/etagen - 12);
-            			turnLeft(90);
-            			move((width-((fenster+1)*6))/fenster);
-            			turnLeft(90);
-            			move(height/etagen - 12);
-            			turnLeft(90);
-            			move((width-((fenster+1)*6))/fenster);
-            			up();
-            			turnLeft(180); 
-            			move((width-((fenster+1)*6))/fenster+6);
-            			turnRight(90);
+            			drawWindow(height, width, etagen, fenster);
             		}
             		else {
             			up();
@@ -138,12 +127,33 @@ public class TurtleStreet extends TurtleMode {
             }
             
         }
-        up();
-        turnLeft(90);
-        move(height);
-        turnLeft(90);
-        
-    }
+	}
+	private void drawWindow(double height, int width, int etagen, int fenster) {
+		down();
+		move(height/etagen - 12);
+		turnLeft(90);
+		move((width-((fenster+1)*6))/fenster);
+		turnLeft(90);
+		move(height/etagen - 12);
+		turnLeft(90);
+		move((width-((fenster+1)*6))/fenster);
+		up();
+		turnLeft(180); 
+		move((width-((fenster+1)*6))/fenster+6);
+		turnRight(90);
+	}
+	private void drawRoof(int width) {
+		int albe = 30;
+		int ga = 180 - albe*2;
+		int ab = (int) (width * Math.sin(albe*Math.PI/180) / Math.sin(ga*Math.PI/180) + 0.5);
+		turnLeft(90 - albe);
+		move(ab);
+		turnLeft(180 - ga);
+		move(ab);
+		turnLeft(180 - albe);
+		move(width);
+		turnLeft(180);
+	}
     
     private void drawHouses() {
     	int anzahl = (int) (2+Math.random()*6);
