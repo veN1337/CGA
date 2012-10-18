@@ -72,12 +72,15 @@ public class TurtleStreet extends TurtleMode {
     	move((int)(width/2 - doorL/2 +0.5));
         turnLeft(90);
         move(height);
+        int albe = 30;
+        int ga = 180 - albe*2;
+        int ab = (int) (width * Math.sin(albe*Math.PI/180) / Math.sin(ga*Math.PI/180) + 0.5);
         if(1+Math.random()*5<3){
-	        turnLeft(30);
-	        move(width);
-	        turnLeft(120);
-	        move(width);
-	        turnLeft(120);
+	        turnLeft(90 - albe);
+	        move(ab);
+	        turnLeft(180 - ga);
+	        move(ab);
+	        turnLeft(180 - albe);
 	        move(width);
 	        turnLeft(180);
         }
@@ -103,7 +106,7 @@ public class TurtleStreet extends TurtleMode {
                 turnRight(90);
                 move(6);
             	for(int j=0; j<fenster;j++){
-            		if((int)(Math.random()*5)<4){
+            		if((int)(Math.random()*5)<3){
             			down();
             			move(height/etagen - 12);
             			turnLeft(90);
