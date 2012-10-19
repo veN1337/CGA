@@ -49,7 +49,9 @@ public class TurtleStreet extends TurtleMode {
         up();
         turnLeft(180);
         move(400);
-        turnRight(180);
+        turnLeft(90);
+        move(90);
+        turnLeft(90);
         down();
     }
 
