@@ -143,7 +143,7 @@ public class TurtleStreet extends TurtleMode {
 		turnRight(90);
 	}
 	private void drawRoof(int width) {
-		int albe = 30;
+		int albe = (int) (20+Math.random()*50+0.5);
 		int ga = 180 - albe*2;
 		int ab = (int) (width * Math.sin(albe*Math.PI/180) / Math.sin(ga*Math.PI/180) + 0.5);
 		turnLeft(90 - albe);
@@ -166,6 +166,5 @@ public class TurtleStreet extends TurtleMode {
 
     public static void main(String[] args) {
 		new TurtleStreet();
-        
     }
 }
