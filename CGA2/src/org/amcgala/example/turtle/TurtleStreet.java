@@ -113,19 +113,6 @@ public class TurtleStreet extends TurtleMode {
         move(height);
         turnLeft(90);
         
-//        turnRight(45);
-//        move(width);
-//        turnRight(135);
-//        move(30);
-//        turnRight(45);
-//        move(width);
-//        turnRight(90);
-//        move(height);
-//        turnRight(45);
-//        move(30);
-//        turnLeft(135);
-//        up();
-        
         
     }
 	private void drawStages(double height, int width, int etagen) {
@@ -207,13 +194,9 @@ public class TurtleStreet extends TurtleMode {
 			turnRight(180);
 			turnRight(albe*2);
 
-			//turnLeft(180);
-			//move(ab);
-			//turnRight(180-ga+180);
 		}
 		turnLeft(45+albe);
-		
-		//turnLeft(180);
+
 		move(30);
 		turnLeft(180);
 		turnLeft(90-albe+45);
