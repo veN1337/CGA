@@ -76,7 +76,7 @@ public class TurtleStreet extends TurtleMode {
         move(height);
         
         
-        if(1+Math.random()*5<43){
+        if(1+Math.random()*5<3){
         	drawRoof(width);
         }
         else{
