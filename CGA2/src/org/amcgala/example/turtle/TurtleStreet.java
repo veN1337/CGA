@@ -75,11 +75,20 @@ public class TurtleStreet extends TurtleMode {
         turnLeft(90);
         move(height);
         
-        if(1+Math.random()*5<3){
+        
+        if(1+Math.random()*5<43){
         	drawRoof(width);
         }
         else{
-        	turnLeft(90);
+	        turnLeft(90);
+	        move(width);
+	        turnRight(135);
+	        move(30);
+	        turnRight(45);
+	        move(width);
+	        turnRight(135);
+	        move(30);
+	        turnRight(45);
         }
         move(width);
         turnLeft(90);
@@ -90,6 +99,33 @@ public class TurtleStreet extends TurtleMode {
         turnLeft(90);
         move(height);
         turnLeft(90);
+        
+        down();
+        turnLeft(45);
+        move(30);
+        turnLeft(45);
+        move(height);
+        turnLeft(135);
+        move(30);
+        
+        turnLeft(45);
+        up();
+        move(height);
+        turnLeft(90);
+        
+//        turnRight(45);
+//        move(width);
+//        turnRight(135);
+//        move(30);
+//        turnRight(45);
+//        move(width);
+//        turnRight(90);
+//        move(height);
+//        turnRight(45);
+//        move(30);
+//        turnLeft(135);
+//        up();
+        
         
     }
 	private void drawStages(double height, int width, int etagen) {
@@ -145,11 +181,42 @@ public class TurtleStreet extends TurtleMode {
 		turnRight(90);
 	}
 	private void drawRoof(int width) {
-		int albe = (int) (20+Math.random()*50+0.5);
+		int albe = (int) (20+Math.random()*40+0.5);
 		int ga = 180 - albe*2;
 		int ab = (int) (width * Math.sin(albe*Math.PI/180) / Math.sin(ga*Math.PI/180) + 0.5);
 		turnLeft(90 - albe);
 		move(ab);
+		turnRight(90-albe+45);
+		move(30);
+		turnRight(45+albe);
+		move(ab);
+		turnRight(180);
+		move(ab);
+		if(albe<45) {
+			turnLeft(180-ga);
+			move(ab);
+			turnRight(albe);
+			turnLeft(45);
+			move(30);
+			
+			turnLeft(180);
+			move(30);
+			turnRight(45);
+			turnLeft(albe);
+			move(ab);
+			turnRight(180);
+			turnRight(albe*2);
+
+			//turnLeft(180);
+			//move(ab);
+			//turnRight(180-ga+180);
+		}
+		turnLeft(45+albe);
+		
+		//turnLeft(180);
+		move(30);
+		turnLeft(180);
+		turnLeft(90-albe+45);
 		turnLeft(180 - ga);
 		move(ab);
 		turnLeft(180 - albe);
@@ -160,7 +227,7 @@ public class TurtleStreet extends TurtleMode {
     private void drawHouses() {
     	int anzahl = (int) (2+Math.random()*6);
     	for(int i=0;i<anzahl;i++){
-    		move(20);
+    		move(40);
     		newHouse();
     	}
     	
