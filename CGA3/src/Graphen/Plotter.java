@@ -5,7 +5,7 @@ import org.amcgala.Scene;
 import org.amcgala.framework.scenegraph.Node;
 
 /**
- * Hauptprogramm für den Plotter.
+ * Hauptprogramm fï¿½r den Plotter.
  */
 public class Plotter extends Amcgala {
 
@@ -13,20 +13,20 @@ public class Plotter extends Amcgala {
     private Node graphNode = new Node("GraphNode");
 
     /**
-     * Graph ist abstrakt, daher müssen alle abstrakten Methoden implementiert werden.
+     * Graph ist abstrakt, daher mï¿½ssen alle abstrakten Methoden implementiert werden.
      * Hier als Beispiel x^2
      */
     private Graph graph = new Graph() {
         @Override
-        public double function(double x) {
-            return x * x;
+        public double f(double x) {
+            return x + x;
         }
     };
 
     public Plotter() {
-        // fügt eine neue Scene hinzu
+        // fï¿½gt eine neue Scene hinzu
         this.framework.addScene(scene);
-        // fügt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
+        // fï¿½gt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
         this.scene.add(graph, graphNode);
         // startet das Framework
         this.framework.start();

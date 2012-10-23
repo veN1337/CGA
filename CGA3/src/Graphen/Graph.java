@@ -9,7 +9,7 @@ import org.amcgala.framework.shape.shape2d.Text;
 
 /**
  * Abstract Graph mit einer Abstrakt definierten Funktion.
- * TODO: Zeichnen des Graphens in passenden Maßstab
+ * TODO: Zeichnen des Graphens in passenden Maï¿½stab
  */
 public abstract class Graph extends AbstractShape {
 	
@@ -69,10 +69,7 @@ public abstract class Graph extends AbstractShape {
         
         //text.render(renderer);
     }
-    
-    public double f(double x){
-    	return x*x;
-    }
+   
 
     /**
      * Abstrakte mathematische Funktion
@@ -80,5 +77,5 @@ public abstract class Graph extends AbstractShape {
      * @param x Berechnungswert
      * @return Ergebnis
      */
-    public abstract double function(double x);
+    public abstract double f(double x);
 }
