@@ -19,7 +19,7 @@ public class Plotter extends Amcgala {
     private Graph graph = new Graph() {
         @Override
         public double f(double x) {
-            return x + x;
+            return x * x;
         }
     };
 

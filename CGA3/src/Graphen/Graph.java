@@ -13,8 +13,8 @@ import org.amcgala.framework.shape.shape2d.Text;
  */
 public abstract class Graph extends AbstractShape {
 	
-	int x =30;
-	int y =20;
+	int x =6;
+	int y =6;
 
     private Line line1 = new Line(-390, 0, 390, 0);
     private Line line2 = new Line(0, -270, 0, 270);
@@ -24,11 +24,12 @@ public abstract class Graph extends AbstractShape {
     public void render(Renderer renderer) {
     	line1.render(renderer);
         line2.render(renderer);
-        double sl=0.1;
+        double sl=0.01;
         for(double x1=-x; x1<x; x1+=sl){
+        	
         	Line graph = new Line(x1*(390/x),f(x1)*(270/y),(x1+sl)*(390/x),f(x1+sl)*(270/y));
-        	graph.setColor(Color.RED);
         	graph.render(renderer);
+        	//graph.update();
         }
     	for(int i = -5; i <=5;i++){
     		if(i<0){
@@ -48,22 +49,34 @@ public abstract class Graph extends AbstractShape {
     	}
     	for(int i = -5; i <=5;i++){
     		if(i<0){
-    			double test =(((double)x/5)*i);
-    			new Text(""+test,i*(780/11)-40,-25).render(renderer);
+    			double test = (((double)x/5)*i);
+    			
+    			String s = ""+((double)(int)(test*10))/10;
+    			
+    			new Text(s,i*(780/11)-40,-25).render(renderer);
     		}
     		else if(i>0){
     			double test =(((double)x/5)*i);
-    			new Text(""+test,i*(780/11)-20,8).render(renderer);
+    			
+    			String s = ""+((double)(int)(test*10))/10;
+    			
+    			new Text(s,i*(780/11)-20,8).render(renderer);
     		}
     	}
     	for(int i = -5; i <=5;i++){
     		if(i>0){
     			double test =(((double)y/5)*i);
-    			new Text(""+test,10,i*(540/11)-8).render(renderer);
+    			
+    			String s = ""+((double)(int)(test*10))/10;
+    					
+    			new Text(s,10,i*(540/11)-8).render(renderer);
     		}
     		else if (i<0){
     			double test =(((double)y/5)*i);
-    			new Text(""+test,-68,i*(540/11)-10).render(renderer);
+    			
+    			String s = ""+((double)(int)(test*10))/10;
+    			
+    			new Text(s,-68,i*(540/11)-10).render(renderer);
     		}
     	}
         
