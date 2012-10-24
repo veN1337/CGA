@@ -131,23 +131,86 @@ public class BresenhamRenderer implements Renderer {
      */
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-        if (x2 > x1) {
-            int tmp = x2;
-            x2 = x1;
-            x1 = tmp;
+    	
+    	int x = x1;
+    	int y = y1;
+    	
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        
+        int Bdx = Math.abs(dx);
+        int Bdy = Math.abs(dy);
+        
+        int Vdx = (int) Math.signum(dx);
+        int Vdy = (int) Math.signum(dy);
+        
+        int pdx;
+        int pdy;
+        int ddx;
+        int ddy;
+        int es;
+        int el;
+        
+        if(Bdx > Bdy) {
+        	pdx = Vdx;
+        	pdy = 0;
+        	
+        	ddx = Vdx;
+        	ddy = Vdy;
+        	
+        	es  = Bdy;
+        	el  = Bdx;
+        } else {
+        	pdx = 0;
+        	pdy = Vdy;
+        			  
+        	ddx = Vdx;
+        	ddy = Vdy;
+        	
+        	es  = Bdx; 
+        	el  = Bdy;
         }
-
-        double m = ((double) x1 - (double) x2) / ((double) y1 - (double) y2);
-
-        for (int i = 0; i < (x1 - x2); i++) {
-            try {
-                this.drawPixel(new Pixel(x1 + i, y1 + (m * (double) i)),g.getColor());
-            } catch (Exception e) {
-
-            }
+        
+        this.drawPixel(new Pixel(x, y),g.getColor());
+        
+        int fehler = el / 2;
+        
+        for(int i=1;i<=el;i++) {
+        	fehler -= es;
+        	if(fehler<0) {
+        		fehler += el;
+        		x += ddx;
+        		y += ddy;
+        	} else {
+        		x = x + pdx;
+        		y = y + pdy;
+        	}
+        	this.drawPixel(new Pixel(x, y),g.getColor());
         }
-
+        
     }
+    
+    
+//    @Override
+//    public void drawLine(int x1, int y1, int x2, int y2) {
+//        if (x2 > x1) {
+//            int tmp = x2;
+//            x2 = x1;
+//            x1 = tmp;
+//        }
+//
+//        double m = ((double) x1 - (double) x2) / ((double) y1 - (double) y2);
+//
+//        for (int i = 0; i < (x1 - x2); i++) {
+//            try {
+//                this.drawPixel(new Pixel(x1 + i, y1 + (m * (double) i)),g.getColor());
+//            } catch (Exception e) {
+//
+//            }
+//        }
+//
+//    }
+    
 
     @Override
     public void drawCircle(double x, double y, double radius) {
