@@ -17,15 +17,20 @@ public class Plotter extends Amcgala {
      * Hier als Beispiel x^2
      */
     private Graph graph = new Graph() {
+    	
         @Override
         public double f(double x) {
             return x * x;
         }
     };
-
+    
     public Plotter() {
+    	
+    	graph.setVars(10, 10, 0.1);
+    	
         // f�gt eine neue Scene hinzu
         this.framework.addScene(scene);
+        System.out.println(this.framework.getWidth() + " - " + this.framework.getHeight());
         // f�gt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
         this.scene.add(graph, graphNode);
         // startet das Framework

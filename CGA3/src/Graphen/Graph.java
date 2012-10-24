@@ -13,21 +13,23 @@ import org.amcgala.framework.shape.shape2d.Text;
  */
 public abstract class Graph extends AbstractShape {
 	
-	int x =6;
-	int y =6;
-
+	double x = 10;
+	double y = 10;
+	double sl = 0.5;
+	
     private Line line1 = new Line(-390, 0, 390, 0);
-    private Line line2 = new Line(0, -270, 0, 270);
+    private Line line2 = new Line(0, -290, 0, 290);
     //private Text text = new Text("Textbeispiel", 0, 0);
 
     @Override
     public void render(Renderer renderer) {
+    	
     	line1.render(renderer);
         line2.render(renderer);
-        double sl=0.01;
+        
         for(double x1=-x; x1<x; x1+=sl){
-        	
-        	Line graph = new Line(x1*(390/x),f(x1)*(270/y),(x1+sl)*(390/x),f(x1+sl)*(270/y));
+        	//                        390           270             390              270
+        	Line graph = new Line(x1*(390/x),f(x1)*(340/y),(x1+sl)*(390/x),f(x1+sl)*(340/y));
         	graph.render(renderer);
         	//graph.update();
         }
@@ -82,6 +84,14 @@ public abstract class Graph extends AbstractShape {
         
         //text.render(renderer);
     }
+    
+	public void setVars(double x, double y, double sl) {
+		
+		this.x = x;
+		this.y = y;
+		this.sl = sl;
+		
+	}
    
 
     /**
