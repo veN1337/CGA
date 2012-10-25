@@ -134,51 +134,44 @@ public class BresenhamRenderer implements Renderer {
     	
     	int x = x1;
     	int y = y1;
+
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+        
+        int sigx = (int) Math.signum(x2 - x1);
+        int sigy = (int) Math.signum(y2 - y1);
+        
     	
-        int dx = x2 - x1;
-        int dy = y2 - y1;
-        
-        int Bdx = Math.abs(dx);
-        int Bdy = Math.abs(dy);
-        
-        int Vdx = (int) Math.signum(dx);
-        int Vdy = (int) Math.signum(dy);
-        
+    	int ddx = sigx;
+    	int ddy = sigy;
+    	
         int pdx;
         int pdy;
-        int ddx;
-        int ddy;
-        int es;
-        int el;
+        int errS;
+        int errL;
         
-        if(Bdx > Bdy) {
-        	pdx = Vdx;
+        if(dx > dy) {
+        	pdx = sigx;
         	pdy = 0;
         	
-        	ddx = Vdx;
-        	ddy = Vdy;
-        	
-        	es  = Bdy;
-        	el  = Bdx;
+        	errS  = dy;
+        	errL  = dx;
         } else {
         	pdx = 0;
-        	pdy = Vdy;
-        			  
-        	ddx = Vdx;
-        	ddy = Vdy;
+        	pdy = sigy;
         	
-        	es  = Bdx; 
-        	el  = Bdy;
+        	errS  = dx; 
+        	errL  = dy;
         }
         
         this.drawPixel(new Pixel(x, y),g.getColor());
         
-        int fehler = el / 2;
+        int fehler = errL / 2;
         
-        for(int i=1;i<=el;i++) {
-        	fehler -= es;
+        for(int i=1;i<=errL;i++) {
+        	fehler -= errS;
         	if(fehler<0) {
-        		fehler += el;
+        		fehler += errL;
         		x += ddx;
         		y += ddy;
         	} else {
