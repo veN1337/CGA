@@ -23,22 +23,24 @@ public class Plotter extends Amcgala {
     	
         @Override
         public double f(double x) {
-            return x * x;
+            return x*x;
         }
     };
     
     public Plotter() {
     	
-    	graph.setVars(10, 10, 0.1);
+    	graph.setVars(20, 20, 0.0001);
     	
-        // f�gt eine neue Scene hinzu
+        // f�gt eine neue Scene hinzuMath.sin(x);
     	this.scene.setRenderer(new BresenhamRenderer(scene.getCamera()));
         this.framework.addScene(scene);
+        System.out.println(System.currentTimeMillis());
         System.out.println(this.framework.getWidth() + " - " + this.framework.getHeight());
         // f�gt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
         this.scene.add(graph, graphNode);
         // startet das Framework
         this.framework.start();
+        
     }
 
     public static void main(String[] args) {
@@ -46,3 +48,15 @@ public class Plotter extends Amcgala {
         new Plotter();
     }
 }
+
+/*
+ * 
+1351146477541
+1351146481670
+4129ms
+ * 
+ * 
+ * 
+ * 
+ * 
+ */

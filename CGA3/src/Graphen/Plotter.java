@@ -20,16 +20,17 @@ public class Plotter extends Amcgala {
     	
         @Override
         public double f(double x) {
-            return x * x;
+            return Math.sin(x);
         }
     };
     
     public Plotter() {
     	
-    	graph.setVars(10, 10, 0.1);
+    	graph.setVars(20, 20, 0.0001);
     	
         // f�gt eine neue Scene hinzu
         this.framework.addScene(scene);
+        System.out.println(System.currentTimeMillis());
         System.out.println(this.framework.getWidth() + " - " + this.framework.getHeight());
         // f�gt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
         this.scene.add(graph, graphNode);
@@ -42,3 +43,15 @@ public class Plotter extends Amcgala {
         new Plotter();
     }
 }
+
+/*
+
+
+1351146600418
+1351146604803
+
+4385ms
+
+
+
+*/

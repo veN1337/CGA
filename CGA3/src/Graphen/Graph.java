@@ -81,6 +81,7 @@ public abstract class Graph extends AbstractShape {
     			new Text(s,-68,i*(540/11)-10).render(renderer);
     		}
     	}
+    	System.out.println(System.currentTimeMillis());
         
         //text.render(renderer);
     }
