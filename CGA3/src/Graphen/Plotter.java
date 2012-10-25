@@ -20,7 +20,7 @@ public class Plotter extends Amcgala {
     	
         @Override
         public double f(double x) {
-            return Math.sin(x);
+            return x*x;
         }
     };
     
@@ -47,11 +47,10 @@ public class Plotter extends Amcgala {
 /*
 
 
-1351146600418
-1351146604803
+1351147977504
+1351148005626
 
-4385ms
-
+28122ms
 
 
 */
