@@ -153,13 +153,11 @@ public class BresenhamRenderer implements Renderer {
         if(dx > dy) {
         	pdx = sigx;
         	pdy = 0;
-        	
         	errS  = dy;
         	errL  = dx;
         } else {
         	pdx = 0;
         	pdy = sigy;
-        	
         	errS  = dx; 
         	errL  = dy;
         }
@@ -175,8 +173,8 @@ public class BresenhamRenderer implements Renderer {
         		x += ddx;
         		y += ddy;
         	} else {
-        		x = x + pdx;
-        		y = y + pdy;
+        		x += pdx;
+        		y += pdy;
         	}
         	this.drawPixel(new Pixel(x, y),g.getColor());
         }
