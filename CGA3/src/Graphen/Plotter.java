@@ -26,11 +26,11 @@ public class Plotter extends Amcgala {
     
     public Plotter() {
     	
-    	graph.setVars(20, 20, 0.0001);
+    	graph.setVars(20, 20, 0.001);
     	
         // f�gt eine neue Scene hinzu
         this.framework.addScene(scene);
-        System.out.println(System.currentTimeMillis());
+        //System.out.println(System.currentTimeMillis());
         System.out.println(this.framework.getWidth() + " - " + this.framework.getHeight());
         // f�gt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
         this.scene.add(graph, graphNode);

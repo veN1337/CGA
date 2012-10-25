@@ -29,7 +29,7 @@ public class Plotter extends Amcgala {
     
     public Plotter() {
     	
-    	graph.setVars(20, 20, 0.0001);
+    	graph.setVars(20, 20, 0.001);
     	
         // f�gt eine neue Scene hinzuMath.sin(x);
     	this.scene.setRenderer(new BresenhamRenderer(scene.getCamera()));
