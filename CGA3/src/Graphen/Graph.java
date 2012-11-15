@@ -15,7 +15,7 @@ public abstract class Graph extends AbstractShape {
 	
 	double x = 10;
 	double y = 10;
-	double sl = 1;
+	double sl = 0.5;
 	
     private Line line1 = new Line(-390, 0, 390, 0);
     private Line line2 = new Line(0, -290, 0, 290);
@@ -25,7 +25,6 @@ public abstract class Graph extends AbstractShape {
     public void render(Renderer renderer) {
     	line1.render(renderer);
         line2.render(renderer);
-        renderer.setColor(Color.RED);
         
         for(double x1=-x; x1<x; x1+=sl){
         	//                        390           270             390              270
@@ -33,7 +32,6 @@ public abstract class Graph extends AbstractShape {
         	graph.render(renderer);
         	//graph.update();
         }
-        renderer.setColor(Color.BLACK);
     	for(int i = -5; i <=5;i++){
     		if(i<0){
     			new Line(i*(780/11),0,i*(780/11),-6).render(renderer);

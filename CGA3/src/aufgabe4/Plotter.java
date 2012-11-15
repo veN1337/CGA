@@ -4,49 +4,43 @@ import org.amcgala.Amcgala;
 import org.amcgala.Scene;
 import org.amcgala.framework.scenegraph.Node;
 
+import aufgabe4.BresenhamRenderer;
+import Graphen.*;
+
 /**
- * User: Steffen Tröster
- * Date: 15.10.12
- * Time: 11:30
- * Hauptprogramm für den Plotter.
+ * Hauptprogramm f�r den Plotter.
  */
 public class Plotter extends Amcgala {
 
-    private Scene scene = new Scene("PlotterScene");
+    private Scene scene = new Scene("PlotterScene");    	
     private Node graphNode = new Node("GraphNode");
-    private Node graphNode2 = new Node("GraphNode2");
 
     /**
-     * Graph ist abstrakt, daher müssen alle abstrakten Methoden implementiert werden.
+     * Graph ist abstrakt, daher m�ssen alle abstrakten Methoden implementiert werden.
      * Hier als Beispiel x^2
      */
-    private Graph graph = new Graph(760, 200, "X-Achse", "Y-Achse") {
+    private Graph graph = new Graph() {
+    	
         @Override
-        public double function(double x) {
-            return Math.sin(x);
+        public double f(double x) {
+            return x*x;
         }
     };
-    /**
-     * Graph ist abstrakt, daher müssen alle abstrakten Methoden implementiert werden.
-     * Hier als Beispiel x^2
-     */
-    private Graph graph2 = new Graph(760, 200, "X-Achse", "Y-Achse") {
-        @Override
-        public double function(double x) {
-            return Math.cos(x);
-        }
-    };
-
+    
     public Plotter() {
-        // Primitiver Line-Renderer wird gesetzt
-        this.scene.setRenderer(new BresenhamRenderer(scene.getCamera()));
-        // fügt eine neue Scene hinzu
+    	
+    	graph.setVars(20, 20, 0.001);
+    	
+        // f�gt eine neue Scene hinzuMath.sin(x);
+    	this.scene.setRenderer(new BresenhamRenderer(scene.getCamera()));
         this.framework.addScene(scene);
-        // fügt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
+        System.out.println(System.currentTimeMillis());
+        System.out.println(this.framework.getWidth() + " - " + this.framework.getHeight());
+        // f�gt ein neues Element mit Knotenpunkt zum Scenengraphen hinzu
         this.scene.add(graph, graphNode);
-        this.scene.add(graph2, graphNode2);
         // startet das Framework
-        this.framework.start();
+        this.framework.show();
+        
     }
 
     public static void main(String[] args) {
@@ -54,3 +48,11 @@ public class Plotter extends Amcgala {
         new Plotter();
     }
 }
+
+/*
+
+1351148066677
+1351148096474
+29797ms
+
+ */

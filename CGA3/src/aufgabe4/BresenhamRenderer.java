@@ -129,7 +129,6 @@ public class BresenhamRenderer implements Renderer {
      *
      * TODO: Bresenham Algortithmus anwerden
      */
-
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
     	
@@ -269,4 +268,11 @@ public class BresenhamRenderer implements Renderer {
     public Color getColor(){
       return g.getColor();
     }
+
+
+	@Override
+	public void fillRect(Pixel arg0, int arg1, int arg2, Color arg3) {
+		// TODO Auto-generated method stub
+		
+	}
 }
