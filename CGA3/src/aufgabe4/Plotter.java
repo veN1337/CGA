@@ -5,7 +5,6 @@ import org.amcgala.Scene;
 import org.amcgala.framework.scenegraph.Node;
 
 import aufgabe4.BresenhamRenderer;
-import Graphen.*;
 
 /**
  * Hauptprogramm f�r den Plotter.
@@ -19,17 +18,16 @@ public class Plotter extends Amcgala {
      * Graph ist abstrakt, daher m�ssen alle abstrakten Methoden implementiert werden.
      * Hier als Beispiel x^2
      */
-    private Graph graph = new Graph() {
-    	
-        @Override
-        public double f(double x) {
-            return x*x;
-        }
+    private Graph graph = new Graph(20, 20, "X", "Y") {
+
+		@Override
+		public double function(double x) {
+			// TODO Auto-generated method stub
+			return x*x;
+		}
     };
     
     public Plotter() {
-    	
-    	graph.setVars(20, 20, 0.001);
     	
         // f�gt eine neue Scene hinzuMath.sin(x);
     	this.scene.setRenderer(new BresenhamRenderer(scene.getCamera()));
