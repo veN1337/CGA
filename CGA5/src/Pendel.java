@@ -1,4 +1,7 @@
+import org.amcgala.framework.shape.AbstractShape;
 
-public class Pendel {
+public class Pendel extends AbstractShape {
+	
+	
 
 }
