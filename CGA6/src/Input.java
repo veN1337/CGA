@@ -12,8 +12,11 @@ import org.amcgala.framework.shape.shape2d.Rectangle;
 public class Input extends Amcgala implements InputHandler {
     private Scene inputScene = new Scene("inputScene");
     private Node inputNode = new Node("input");
-
+    
+    int boxsize = 300;
+    
     public Input() {
+    	inputScene.add(new Rectangle(-boxsize/2,-boxsize/2,boxsize,boxsize), inputNode);
         framework.addScene(inputScene);
         framework.addInputHandler(this, "input");
     }
