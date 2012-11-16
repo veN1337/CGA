@@ -24,8 +24,7 @@ public class Pendel extends AbstractShape {
 	}
 	
 	@Override
-    public void render(Renderer renderer) {
-        renderer.setColor(Color.blue);
+    public void render(Renderer renderer) { 
         newpos = pos; 
         speed.x = decelerate.x * pos.x + attenuation.x * speed.x;
         newpos.x = pos.x + speed.x;
@@ -37,6 +36,7 @@ public class Pendel extends AbstractShape {
         newpos.z = pos.z + speed.z;
 
         liste.add(new Vector3d(newpos));
+        renderer.setColor(Color.red);
         renderer.drawCircle(newpos,radius);
         
         if(liste.size() > 60){
@@ -44,6 +44,7 @@ public class Pendel extends AbstractShape {
         }
         Vector3d v = liste.get(0);
         for (Vector3d l: liste) {
+        	renderer.setColor(Color.blue);
         	renderer.drawLine(v, l);
             v = l;
         }        
