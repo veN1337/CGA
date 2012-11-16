@@ -14,7 +14,7 @@ public class Pendel extends AbstractShape {
 	
 	private Vector3d speed = new Vector3d(0, 0, 0);	    
 	private Vector3d decelerate = new Vector3d(-0.1, -0.2, -0.15);	    
-	private Vector3d attenuation = new Vector3d(0.99, 0.99, 0.99);
+	private Vector3d attenuation = new Vector3d(1, 1, 1);
 	
 	 private List<Vector3d> liste = new ArrayList<Vector3d>();
 
@@ -39,7 +39,7 @@ public class Pendel extends AbstractShape {
         renderer.setColor(Color.red);
         renderer.drawCircle(newpos,radius);
         
-        if(liste.size() > 60){
+        if(liste.size() > 1000){
         	liste.remove(0);
         }
         Vector3d v = liste.get(0);

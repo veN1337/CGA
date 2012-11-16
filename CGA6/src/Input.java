@@ -22,7 +22,7 @@ public class Input extends Amcgala implements InputHandler {
     
     private List<Rectangle> liste = new ArrayList<Rectangle>();
     
-    int boxsize = 300;
+    int boxsize = 400;
     
     public Input() {
     	inputScene.add(new Rectangle(-boxsize/2,-boxsize/2,boxsize,boxsize), inputNode);
