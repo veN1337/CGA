@@ -15,20 +15,22 @@ public class Plotter extends Amcgala {
     private Box box = new Box(new Vector3d(-200, -200, -200), -400, -400, -400); 
     
     private Node pendelNode = new Node("pendelNode");
-    private Box pendel = new Pendel(new Vector3D(-200,-200,-200), 50,50,50);
+    private Pendel pendel = new Pendel(new Vector3d(-200, -200, -200),50);
     
     private Translation trans = new Translation(400,400,0);
-    private RotationY rb = new RotationY(0);
+    private RotationY r = new RotationY(0);
 
     public Plotter() {
         this.framework.addScene(scene);
         
         this.scene.add(box, boxNode);
-        rb.setInterpolationPhi(new LinearInterpolation(0, 2 * Math.PI, 600, true));
-        this.boxNode.add(rb);
+        r.setInterpolationPhi(new LinearInterpolation(0, 2 * Math.PI, 600, true));
+        this.boxNode.add(r);
         this.boxNode.add(trans);
         
         this.scene.add(pendel,pendelNode);
+        //rpY.setInterpolationPhi(new LinearInterpolation(0, 2 * Math.PI, 600, true));
+        this.pendelNode.add(r);
         
         this.framework.show();
     }
