@@ -29,7 +29,6 @@ public class Plotter extends Amcgala {
         this.boxNode.add(trans);
         
         this.scene.add(pendel,pendelNode);
-        //rpY.setInterpolationPhi(new LinearInterpolation(0, 2 * Math.PI, 600, true));
         this.pendelNode.add(r);
         
         this.framework.show();
