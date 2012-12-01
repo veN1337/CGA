@@ -38,7 +38,41 @@ public class Sphere extends AbstractShape {
          *      - der Schnittpunkt
          *      - die Farbe der Kugel
          */
+        
+    	double t;
+    	Vector3d temp = ray.origin.sub(center);
+    	double a = ray.direction.dot(ray.direction);
+    	double b = temp.times(2.0).dot(ray.direction);
+    	double c = temp.dot(temp) - radius * radius;
+    	double disc = b * b - 4.0 * a * c;
 
+    	if (disc < 0.0) {
+    		return false;
+    	} else {
+    		double e = Math.sqrt(disc);
+    		double denom = 2.0 * a;
+    		t = (-b-e)/denom; // smaller root
+
+	    	if (t > MathConstants.EPSILON) {
+		    	shadingInfo.t = t;
+		    	shadingInfo.normal = (temp.add(ray.direction.times(t)));
+		    	shadingInfo.hitPoint = ray.origin.add(ray.direction.times(t));
+		    	shadingInfo.color = this.color;
+		
+		    	return true;
+	    	}
+
+	    	t = (-b+e) / denom; // larger root
+
+	    	if (t > MathConstants.EPSILON) {
+	    		shadingInfo.t = t;
+	    		shadingInfo.normal = (temp.add(ray.direction.times(t)));
+	    		shadingInfo.hitPoint = ray.origin.add(ray.direction.times(t));
+	    		shadingInfo.color = this.color;
+	    		
+	    		return true;
+	    	}
+    	}
 
         return false;
     }
