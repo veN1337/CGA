@@ -15,10 +15,13 @@
 package org.amcgala.framework.raytracer.tracer;
 
 
+import java.util.Collection;
+
 import org.amcgala.Scene;
 import org.amcgala.framework.raytracer.RGBColor;
 import org.amcgala.framework.raytracer.Ray;
 import org.amcgala.framework.raytracer.ShadingInfo;
+import org.amcgala.framework.shape.Shape;
 
 /**
  * Ein Raytracer stellt eine Szene über die Schnittpunktsberechnungen der vorhandenen Objekte mit "Sehstrahlen" dar.
@@ -45,8 +48,16 @@ public class SimpleTracer implements Tracer {
          * Sonst
          *      Gib die Hintergrundfarbe der Szene zurück
          */
-
-        return null;
+        
+        Collection<Shape> shapes = scene.getShapes();
+    	for (Shape s:shapes) {
+    		s.hit(ray, result);
+    	}
+        
+    	if(result.color != null) {
+    		return result.color;
+    	}
+    	return scene.getBackground();
     }
 
 }
