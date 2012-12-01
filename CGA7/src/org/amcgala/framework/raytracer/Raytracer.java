@@ -21,8 +21,6 @@ import org.amcgala.framework.raytracer.tracer.SimpleTracer;
 import org.amcgala.framework.raytracer.tracer.Tracer;
 import org.amcgala.framework.renderer.Renderer;
 
-import java.awt.*;
-
 /**
  * Der RaytraceVisitor traversiert den {@link org.amcgala.framework.scenegraph.SceneGraph} und berechnet die
  * Schnittpunkte den Objekten innerhalb der Szene.
@@ -66,6 +64,15 @@ public class Raytracer {
          *      Färbe den Pixel an der Stelle (x,y) ein.
          *          Tipp: viewPlane.drawPixel(x, y, color)
          */
+    	
+    	for (int x=0; x<viewPlane.getHorizontalResolution(); x++) {
+    		for (int y=0; y<viewPlane.getVerticalResolution(); y++) {
+    			Vector3d org = viewPlane.getWorldCoordinates(x, y);
+    			RGBColor color = tracer.trace(new Ray(org, direction), scene);
+    			viewPlane.drawPixel(x,y,color);
+    		}
+    	}
+    	
     }
 }
 
