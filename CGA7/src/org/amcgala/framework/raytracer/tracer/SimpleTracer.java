@@ -60,4 +60,10 @@ public class SimpleTracer implements Tracer {
     	return scene.getBackground();
     }
 
+	@Override
+	public RGBColor trace(Ray ray, Scene scene, int depth) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
