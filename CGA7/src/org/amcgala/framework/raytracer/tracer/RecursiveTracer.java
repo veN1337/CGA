@@ -1,8 +1,12 @@
 package org.amcgala.framework.raytracer.tracer;
 
+import java.util.Collection;
+
 import org.amcgala.Scene;
 import org.amcgala.framework.raytracer.RGBColor;
 import org.amcgala.framework.raytracer.Ray;
+import org.amcgala.framework.raytracer.ShadingInfo;
+import org.amcgala.framework.shape.Shape;
 
 /**
  * Rekursiver Raytracer, der für die Berechnung von Reflexionen verwendet werden kann.
@@ -39,7 +43,23 @@ public class RecursiveTracer implements Tracer {
          *      - aktuelle Szene
          *      - Referenz auf den Tracer
          */
-
-        return null;
+    	
+    	if(depth > maxDepth) {
+    		return scene.getBackground();
+    	}
+    	
+    	ShadingInfo result = new ShadingInfo();
+    	    	
+    	Collection<Shape> shapes = scene.getShapes();
+    	for (Shape s:shapes) {
+    		trace(new Ray(result.hitPoint, ray.direction), scene, ++depth);
+    		s.hit(ray, result);    		
+    	}
+        
+    	if(result.color != null) {
+    		return result.color;
+    	}
+    	return scene.getBackground();
+    	
     }
 }

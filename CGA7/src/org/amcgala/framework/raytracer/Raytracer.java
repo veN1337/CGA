@@ -17,6 +17,7 @@ package org.amcgala.framework.raytracer;
 import org.amcgala.Scene;
 import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.sampler.RegularSampler;
+import org.amcgala.framework.raytracer.tracer.RecursiveTracer;
 import org.amcgala.framework.raytracer.tracer.SimpleTracer;
 import org.amcgala.framework.raytracer.tracer.Tracer;
 import org.amcgala.framework.renderer.Renderer;
@@ -36,7 +37,8 @@ public class Raytracer {
     private Vector3d direction;
 
     public Raytracer() {
-        tracer = new SimpleTracer();
+        //tracer = new SimpleTracer();
+    	tracer = new RecursiveTracer(3);
 
         // Was bewirken die Parameter? Wie verändert sich das Ergebnis des Raytracers?
         viewPlane = new ViewPlane(600, 600, 1);

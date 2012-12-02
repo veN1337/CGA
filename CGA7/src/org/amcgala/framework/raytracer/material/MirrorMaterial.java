@@ -35,7 +35,7 @@ public class MirrorMaterial extends Material {
          * Die gewichtete Summe der Farben wird am Ende der Methode zurückgegeben.
          *
          */
-
-        return null;
+    	
+    	return (baseColor.add(hit.color)).times(reflectionCoefficient);
     }
 }
