@@ -3,6 +3,7 @@ package org.amcgala.framework.raytracer.tracer;
 import java.util.Collection;
 
 import org.amcgala.Scene;
+import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.RGBColor;
 import org.amcgala.framework.raytracer.Ray;
 import org.amcgala.framework.raytracer.ShadingInfo;
@@ -49,16 +50,32 @@ public class RecursiveTracer implements Tracer {
     	}
     	
     	ShadingInfo result = new ShadingInfo();
-    	    	
+    	
+    	result.depth = depth;
+    	result.scene = scene;
+    	result.tracer = this;
+    	
+    	double temp=result.t;
+        Shape temper;
+    	
     	Collection<Shape> shapes = scene.getShapes();
     	for (Shape s:shapes) {
-    		trace(new Ray(result.hitPoint, ray.direction), scene, ++depth);
-    		s.hit(ray, result);    		
+    		if(s.hit(ray, result)) {
+    			
+    			if(temp > result.t){
+        			temper = s;
+        			temper.hit(ray,result);
+        		}
+    			
+    			result.color.add(s.getMaterial().getColor());
+    			
+		    	Vector3d refl = (result.normal).times(result.normal.dot(ray.direction)).times(-2).add(ray.direction);
+		    	
+		    	return result.color.add(trace(new Ray(result.hitPoint, refl), scene, ++depth));
+		    	
+    		}
     	}
         
-    	if(result.color != null) {
-    		return result.color;
-    	}
     	return scene.getBackground();
     	
     }

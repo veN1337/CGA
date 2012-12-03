@@ -19,17 +19,27 @@ public class RaySphereTest {
         Framework framework = Framework.createInstance(600, 600);
         Scene scene = new Scene("raytracer");
         Node sphereNode = new Node("sphere node");
-        scene.setBackground(new RGBColor(0.5f, 0.5f, 0.5f));
+        scene.setBackground(new RGBColor(0,0,0));
 
-        Sphere sphere = new Sphere(new Vector3d(-110, 100, -80), 50);
-        sphere.setColor(new RGBColor(0,1,0));
-        sphere.setMaterial(new MirrorMaterial(0.81f, new RGBColor(0,0,1)));
+        Sphere sphere = new Sphere(new Vector3d(-10, 100, -120), 40);
+        sphere.setColor(new RGBColor(0,0,1));
+        sphere.setMaterial(new MirrorMaterial(0.25f, new RGBColor(1,1,1)));
         scene.add(sphere, sphereNode);
 
-        Sphere sphere2 = new Sphere(new Vector3d(110, 100, -80), 50);
+        Sphere sphere2 = new Sphere(new Vector3d(110, 100, -50), 50);
         sphere2.setColor(new RGBColor(1, 0, 0));
-        sphere2.setMaterial(new MirrorMaterial(0.81f, new RGBColor(0,1,1)));
+        sphere2.setMaterial(new MirrorMaterial(0.25f, new RGBColor(1,1,1)));
         scene.add(sphere2, sphereNode);
+        
+        Sphere sphere12 = new Sphere(new Vector3d(150, 240, -400), 30);
+        sphere12.setColor(new RGBColor(0, 1, 0));
+        sphere12.setMaterial(new MirrorMaterial(0.25f, new RGBColor(1,1,1)));
+        scene.add(sphere12, sphereNode);
+        
+        Sphere sphere32 = new Sphere(new Vector3d(-150, 140, -10), 30);
+        sphere32.setColor(new RGBColor(0, 1, 0));
+        sphere32.setMaterial(new MirrorMaterial(0.25f, new RGBColor(1,1,1)));
+        scene.add(sphere32, sphereNode);
 
         framework.addScene(scene);
     }
