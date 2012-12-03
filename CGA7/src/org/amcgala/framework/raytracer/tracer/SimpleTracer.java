@@ -50,10 +50,17 @@ public class SimpleTracer implements Tracer {
          */
         
         Collection<Shape> shapes = scene.getShapes();
+        double temp=result.t;
+        Shape temper;
     	for (Shape s:shapes) {
     		s.hit(ray, result);
+    		if(temp > result.t){
+    			temper =s;
+    			temper.hit(ray,result);
+    		}
     	}
         
+    	
     	if(result.color != null) {
     		return result.color;
     	}
