@@ -38,7 +38,7 @@ public class Raytracer {
 
     public Raytracer() {
         //tracer = new SimpleTracer();
-    	tracer = new RecursiveTracer(4);
+    	tracer = new RecursiveTracer(3);
 
         // Was bewirken die Parameter? Wie verändert sich das Ergebnis des Raytracers?
         viewPlane = new ViewPlane(600, 600, 1);

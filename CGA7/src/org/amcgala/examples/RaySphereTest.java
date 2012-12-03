@@ -2,6 +2,7 @@ package org.amcgala.examples;
 
 import org.amcgala.Framework;
 import org.amcgala.Scene;
+import org.amcgala.framework.math.Plane;
 import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.RGBColor;
 import org.amcgala.framework.raytracer.material.MirrorMaterial;
