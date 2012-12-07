@@ -36,6 +36,7 @@ public class MirrorMaterial extends Material {
          *
          */
     	
-    	return (baseColor.add(hit.color)).times(reflectionCoefficient);
+    	//return (baseColor.add(hit.color)).times(reflectionCoefficient);
+    	return hit.color.times(1-reflectionCoefficient).add(baseColor.times(reflectionCoefficient));
     }
 }
