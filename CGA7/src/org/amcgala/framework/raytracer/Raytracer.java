@@ -18,7 +18,6 @@ import org.amcgala.Scene;
 import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.sampler.RegularSampler;
 import org.amcgala.framework.raytracer.tracer.RecursiveTracer;
-import org.amcgala.framework.raytracer.tracer.SimpleTracer;
 import org.amcgala.framework.raytracer.tracer.Tracer;
 import org.amcgala.framework.renderer.Renderer;
 
@@ -35,16 +34,17 @@ public class Raytracer {
     private Tracer tracer;
     private ViewPlane viewPlane;
     private Vector3d direction;
+    private Vector3d eye;
 
     public Raytracer() {
         //tracer = new SimpleTracer();
-    	tracer = new RecursiveTracer(3);
+        tracer = new RecursiveTracer(3);
 
         // Was bewirken die Parameter? Wie verändert sich das Ergebnis des Raytracers?
         viewPlane = new ViewPlane(600, 600, 1);
-
+        eye = new Vector3d(0, 0, 650);
         viewPlane.setSampler(new RegularSampler());
-        direction = new Vector3d(0, 0, -1);
+
     }
 
     public void setScene(Scene scene) {
@@ -66,15 +66,16 @@ public class Raytracer {
          *      Färbe den Pixel an der Stelle (x,y) ein.
          *          Tipp: viewPlane.drawPixel(x, y, color)
          */
-    	
-    	for (int x=0; x<viewPlane.getHorizontalResolution(); x++) {
-    		for (int y=0; y<viewPlane.getVerticalResolution(); y++) {
-    			Vector3d org = viewPlane.getWorldCoordinates(x, y);
-    			RGBColor color = tracer.trace(new Ray(org, direction), scene);
-    			viewPlane.drawPixel(x,y,color);
-    		}
-    	}
-    	
+
+        for (int x = 0; x < viewPlane.getHorizontalResolution(); x++) {
+            for (int y = 0; y < viewPlane.getVerticalResolution(); y++) {
+                Vector3d org = viewPlane.getWorldCoordinates(x, y);
+                direction = org.sub(eye);
+                RGBColor color = tracer.trace(new Ray(org, direction), scene);
+                viewPlane.drawPixel(x, y, color);
+            }
+        }
+
     }
 }
 

@@ -1,6 +1,8 @@
 package org.amcgala.framework.raytracer.material;
 
+import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.RGBColor;
+import org.amcgala.framework.raytracer.Ray;
 import org.amcgala.framework.raytracer.ShadingInfo;
 
 /**
@@ -21,6 +23,7 @@ public class MirrorMaterial extends Material {
      */
     public MirrorMaterial(float reflectionCoefficient, RGBColor baseColor) {
         this.reflectionCoefficient = reflectionCoefficient;
+        // Nebenbedingung: refCo + refrCo <= 1 ansonsten IllegalArgumentException
         this.baseColor = baseColor;
     }
 
@@ -35,8 +38,13 @@ public class MirrorMaterial extends Material {
          * Die gewichtete Summe der Farben wird am Ende der Methode zurückgegeben.
          *
          */
-    	
-    	//return (baseColor.add(hit.color)).times(reflectionCoefficient);
-    	return hit.color.times(1-reflectionCoefficient).add(baseColor.times(reflectionCoefficient));
+
+        Vector3d refl = (hit.normal).times(hit.normal.dot(hit.ray.direction)).times(-2).add(hit.ray.direction);
+
+        // Refraktionsvektor bestimmen
+
+    	return baseColor.times(1-reflectionCoefficient)
+                .add(hit.tracer.trace(new Ray(hit.hitPoint, refl), hit.scene, hit.depth++).times(reflectionCoefficient));
+               // .add(hit.tracer.trace(new Ray(hit.hitPoint.travel(refr, MathConstants.EPSILON), refr), hit.scene, hit.depth++).times(refractionCoefficient));
     }
 }

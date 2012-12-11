@@ -1,13 +1,12 @@
 package org.amcgala.framework.raytracer.tracer;
 
-import java.util.Collection;
-
 import org.amcgala.Scene;
-import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.RGBColor;
 import org.amcgala.framework.raytracer.Ray;
 import org.amcgala.framework.raytracer.ShadingInfo;
 import org.amcgala.framework.shape.Shape;
+
+import java.util.Collection;
 
 /**
  * Rekursiver Raytracer, der für die Berechnung von Reflexionen verwendet werden kann.
@@ -44,39 +43,30 @@ public class RecursiveTracer implements Tracer {
          *      - aktuelle Szene
          *      - Referenz auf den Tracer
          */
-    	
-    	if(depth > maxDepth) {
-    		return scene.getBackground();
-    	}
-    	
-    	ShadingInfo result = new ShadingInfo();
-    	
-    	result.depth = depth;
-    	result.scene = scene;
-    	result.tracer = this;
-    	
-    	double temp=result.t;
-        Shape temper;
-    	
-    	Collection<Shape> shapes = scene.getShapes();
-    	for (Shape s:shapes) {
-    		if(s.hit(ray, result)) {
-    			
-    			if(temp > result.t){
-        			temper = s;
-        			temper.hit(ray,result);
-        		}
-    			
-    			result.color.add(s.getMaterial().getColor());
-    			
-		    	Vector3d refl = (result.normal).times(result.normal.dot(ray.direction)).times(-2).add(ray.direction);
-		    	
-		    	return result.color.add(trace(new Ray(result.hitPoint, refl), scene, ++depth));
-		    	
-    		}
-    	}
-        
-    	return scene.getBackground();
-    	
+
+        if (depth > maxDepth) {
+            return scene.getBackground();
+        }
+
+        ShadingInfo result = new ShadingInfo();
+        result.color = scene.getBackground();
+
+
+        Collection<Shape> shapes = scene.getShapes();
+        for (Shape s : shapes) {
+            ShadingInfo tmp = new ShadingInfo();
+            tmp.depth = depth;
+            tmp.scene = scene;
+            tmp.tracer = this;
+
+            if (s.hit(ray, tmp)) {
+                if (tmp.t < result.t) {
+                    result = tmp;
+                }
+            }
+        }
+
+        return result.color;
+
     }
 }
