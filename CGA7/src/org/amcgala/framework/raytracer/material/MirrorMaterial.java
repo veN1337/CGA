@@ -1,5 +1,6 @@
 package org.amcgala.framework.raytracer.material;
 
+import org.amcgala.framework.math.MathConstants;
 import org.amcgala.framework.math.Vector3d;
 import org.amcgala.framework.raytracer.RGBColor;
 import org.amcgala.framework.raytracer.Ray;
@@ -13,6 +14,7 @@ import org.amcgala.framework.raytracer.ShadingInfo;
  */
 public class MirrorMaterial extends Material {
     private float reflectionCoefficient;
+	private float refractionCoefficient;
     private RGBColor baseColor;
 
     /**
@@ -21,9 +23,13 @@ public class MirrorMaterial extends Material {
      * @param reflectionCoefficient der Reflektionskoeffizient
      * @param baseColor             die Grundfarbe des Materials
      */
-    public MirrorMaterial(float reflectionCoefficient, RGBColor baseColor) {
-        this.reflectionCoefficient = reflectionCoefficient;
+    public MirrorMaterial(float reflectionCoefficient, float refractionCoefficient, RGBColor baseColor) {
+    	this.reflectionCoefficient = reflectionCoefficient;
+    	this.refractionCoefficient = refractionCoefficient;
         // Nebenbedingung: refCo + refrCo <= 1 ansonsten IllegalArgumentException
+    	if(reflectionCoefficient + refractionCoefficient > 1) {
+    		throw new IllegalArgumentException("reflectionCoefficient + refractionCoefficient > 0");
+    	}
         this.baseColor = baseColor;
     }
 
@@ -42,9 +48,20 @@ public class MirrorMaterial extends Material {
         Vector3d refl = (hit.normal).times(hit.normal.dot(hit.ray.direction)).times(-2).add(hit.ray.direction);
 
         // Refraktionsvektor bestimmen
+        double n = 1/1.5;
+        Vector3d i = hit.ray.direction.normalize();
+        double cosI = hit.normal.times(-1).dot(i);
+        double sinT2 = n * n * (1.0 - cosI * cosI);
+        
+    	if ( sinT2 > 1.0 ) {
+    		return null;
+    	}
 
-    	return baseColor.times(1-reflectionCoefficient)
-                .add(hit.tracer.trace(new Ray(hit.hitPoint, refl), hit.scene, hit.depth++).times(reflectionCoefficient));
-               // .add(hit.tracer.trace(new Ray(hit.hitPoint.travel(refr, MathConstants.EPSILON), refr), hit.scene, hit.depth++).times(refractionCoefficient));
+        Vector3d refr = i.times(n).sub(hit.normal.times(n + Math.sqrt(1.0 - sinT2)));
+
+    	return baseColor.times(1-reflectionCoefficient-refractionCoefficient)
+                .add(hit.tracer.trace(new Ray(hit.hitPoint, refl), hit.scene, hit.depth++).times(reflectionCoefficient))
+                .add(hit.tracer.trace(new Ray(hit.hitPoint.travel(refr, MathConstants.EPSILON), refr), hit.scene, hit.depth++).times(refractionCoefficient));
     }
+
 }
