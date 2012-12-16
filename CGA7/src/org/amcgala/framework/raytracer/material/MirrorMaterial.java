@@ -57,7 +57,7 @@ public class MirrorMaterial extends Material {
     		return null;
     	}
 
-        Vector3d refr = i.times(n).sub(hit.normal.times(n + Math.sqrt(1.0 - sinT2)));
+        Vector3d refr = i.times(n).sub(hit.normal.times(n * cosI + Math.sqrt(1.0 - sinT2)));
 
     	return baseColor.times(1-reflectionCoefficient-refractionCoefficient)
                 .add(hit.tracer.trace(new Ray(hit.hitPoint, refl), hit.scene, hit.depth++).times(reflectionCoefficient))
