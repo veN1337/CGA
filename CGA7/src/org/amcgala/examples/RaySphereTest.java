@@ -40,8 +40,11 @@ public class RaySphereTest {
         sphere32.setMaterial(new MirrorMaterial(0.3f,0.4f, new RGBColor(0.4f,0.4f,0.4f)));
         scene.add(sphere32, sphereNode);
         
-        CheckerBoard board = new CheckerBoard(new Vector3d(0, -300, 0), new Vector3d(1, 0, 0), new Vector3d(0, 0, 1), 600);
+        CheckerBoard board = new CheckerBoard(new Vector3d(0, -300, 0), new Vector3d(1, 0, 0), new Vector3d(0, 0, 1), 600, new RGBColor(1,1,1), new RGBColor(0,0,0));
         scene.add(board, sphereNode);
+        
+        CheckerBoard board2 = new CheckerBoard(new Vector3d(0, -200, -6000), new Vector3d(1, 0, 0), new Vector3d(0, 1, 0), 600, new RGBColor(0.75f,0,0), new RGBColor(1,1,1));
+        scene.add(board2, sphereNode);
 
         framework.addScene(scene);
     }

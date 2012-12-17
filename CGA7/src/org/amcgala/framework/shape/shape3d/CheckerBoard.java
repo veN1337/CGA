@@ -7,16 +7,20 @@ import org.amcgala.framework.raytracer.ShadingInfo;
 import org.amcgala.framework.shape.AbstractShape;
 
 public class CheckerBoard extends AbstractShape {
+	private RGBColor whiteColor;
+	private RGBColor blackColor;
 	private Vector3d origin;
 	private Vector3d dir1;
 	private Vector3d dir2;
 	private int size;
 	
-	public CheckerBoard(Vector3d origin, Vector3d dir1, Vector3d dir2, int size) {
+	public CheckerBoard(Vector3d origin, Vector3d dir1, Vector3d dir2, int size,RGBColor white, RGBColor black) {
 		this.origin = origin;
 		this.dir1 = dir1;
 		this.dir2 = dir2;
 		this.size = size;
+		this.whiteColor = white;
+		this.blackColor = black;
 	}
 	
 	@Override
@@ -40,29 +44,29 @@ public class CheckerBoard extends AbstractShape {
 				if (shadingInfo.hitPoint.x > 0) {
 					if (shadingInfo.hitPoint.x % size < max) {
 						if (Math.abs(shadingInfo.hitPoint.z) % size < max) {
-							shadingInfo.color = new RGBColor(1, 1, 1);
+							shadingInfo.color = whiteColor;
 						} else {
-							shadingInfo.color = new RGBColor(0, 0, 0);
+							shadingInfo.color = blackColor;
 						}
 					} else {
 						if (Math.abs(shadingInfo.hitPoint.z) % size < max) {
-							shadingInfo.color = new RGBColor(0, 0, 0);
+							shadingInfo.color = blackColor;
 						} else {
-							shadingInfo.color = new RGBColor(1, 1, 1);
+							shadingInfo.color = whiteColor;
 						}
 					}
 				} else {
 					if (Math.abs(shadingInfo.hitPoint.x) % size < max) {
 						if (Math.abs(shadingInfo.hitPoint.z) % size < max) {
-							shadingInfo.color = new RGBColor(0, 0, 0);
+							shadingInfo.color = blackColor;
 						} else {
-							shadingInfo.color = new RGBColor(1, 1, 1);
+							shadingInfo.color = whiteColor;
 						}
 					} else {
 						if (Math.abs(shadingInfo.hitPoint.z) % size < max) {
-							shadingInfo.color = new RGBColor(1, 1, 1);
+							shadingInfo.color = whiteColor;
 						} else {
-							shadingInfo.color = new RGBColor(0, 0, 0);
+							shadingInfo.color = blackColor;
 						}
 					}
 				}
